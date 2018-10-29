@@ -839,4 +839,4 @@ client.on('message', message => {
 
 });
 
-client.login("NDk5OTgxODA0NzgzMjcxOTM4.DqjFDA.UfVYHFCnm4DGQ0CV3iP5c1JHM4U")
+client.login(process.env.BOT_TOKEN);
