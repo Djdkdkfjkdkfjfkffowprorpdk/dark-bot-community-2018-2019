@@ -1,15 +1,24 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
 const fs = require("fs");
 const Canvas = require("canvas");
 const jimp = require("jimp");
 const prefix = "#";
-const Discord = require('discord.js');
-const client = new Discord.Client();
 const id = JSON.parse(fs.readFileSync("./m3a4x/id.json", "utf8"));
-const config = require('./Configuration.json');
-const tpoints = JSON.parse(fs.readFileSync('./Text.json', 'UTF8'));
-const vpoints = JSON.parse(fs.readFileSync('./Voice.json', 'UTF8'));
+const config = { prefix: "#" };
+const tpoints = {};
+const vpoints = {};
 client.config = config;
 client.login(client.config.token);
+client.on('ready',async () => {
+  console.log(`.Codes TOP.`);
+  client.users.forEach(m => {
+    if(m.bot) return;
+    if(!tpoints[m.id]) tpoints[m.id] = {points: 0, id: m.id};
+
+    if(!vpoints[m.id]) vpoints[m.id] = {points: 0, id: m.id};
+  });
+});
 client.on('ready', () => {
     console.log(`Created By: M3a4x`);
     console.log(`Developed By: ! M3a4x.js ♥`);
@@ -19,15 +28,16 @@ client.on('ready', () => {
 });
 
 
-client.on('message',message => {
+client.on('message',async message => {
   if(message.author.bot || message.channel.type === 'dm') return;
   let args = message.content.split(' ');
   let member = message.member;
   let mention = message.mentions.users.first();
   let guild = message.guild;
   let author = message.author;
+
+  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
   tpoints[author.id].points += rPoints;
-  fs.writeFileSync("./Text.json", JSON.stringify(tpoints, null, 2));
   if(args[0] === `${client.config.prefix}top`) {
     let _voicePointer = 1;
     let _textPointer = 1;
@@ -37,11 +47,12 @@ client.on('message',message => {
     let _voiceText = _voiceArray.slice(0, 5).map(r => `**\`.${_voicePointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).sort((a, b) => a > b).join('\n');
 
     let topRoyale = new Discord.RichEmbed();
-    topRoyale.setTitle(' \📋Guild Score Leaderboards');
+    topRoyale.setAuthor(message.author.username, message.author.avatarURL);
+    topRoyale.setTitle('\📋Guild Score Leaderboards'');
+    //topRoyale.setThumbnail(message.guild.iconURL);
     topRoyale.addField(`**TOP 5 TEXT 💬**`, _topText, true);
     topRoyale.addField(`**TOP 5 VOICE 🎙**`, _voiceText, true);
-    topRoyale.setFooter(message.author.username, message.author.avatarURL, message.author.tag);
-    topRoyale.setColor("RANDOM");
+    topRoyale.setFooter(`DarkCommunity.`, message.guild.iconURL);
     message.channel.send(topRoyale).catch(e => {
       if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
     });
@@ -52,34 +63,12 @@ client.on('voiceStateUpdate', (u, member) => {
   let author = member.user.id;
   let guild = member.guild;
   if(member.voiceChannel === null) return;
-  let rPoints = Math.floor(Math.#RANDOM() * 4) + 1;// #RANDOM Points
+  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
   setInterval(() => {
     if(!member.voiceChannel) return;
     if(member.selfDeafen) return;
     vpoints[author].points += rPoints;
-    fs.writeFileSync("./Voice.json", JSON.stringify(vpoints, null, 2));
   }, 5000); // 5 Secs
-});
-
-client.on("message", message => {
-  if (message.author.bot) return;
-fs.writeFile('./m3a4x/id.json', JSON.stringify(id), (err) => {
-if (err) console.error(err);
-});
-});
-      client.on('message', message => {
-          if(!id[message.author.id]) id[message.author.id] ={
-              textid: 1,
-              points: 1
-          };
-          if(message.author.bot) return;
-          id[message.author.id].points = Math.floor(id[message.author.id].points+4);
-          if(id[message.author.id].points > 10) {
-              id[message.author.id].points = 10;
-              id[message.author.id].level = Math.floor(id[message.author.id].level+4);
-          }
-          fs.writeFile('./m3a4x/id.json', JSON.stringify(id), (err) => {
-if (err) console.error(err);
 });
     
 
