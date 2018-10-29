@@ -4,15 +4,15 @@ const jimp = require("jimp");
 const prefix = "#";
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const id = JSON.parse(fs.readFileSync("./id/m3a4x.json", "utf8"));
+const id = JSON.parse(fs.readFileSync("./m3a4x/id.json", "utf8"));
 const config = require('./Configuration.json');
 const tpoints = JSON.parse(fs.readFileSync('./Text.json', 'UTF8'));
 const vpoints = JSON.parse(fs.readFileSync('./Voice.json', 'UTF8'));
 client.config = config;
 client.login(client.config.token);
 client.on('ready', () => {
-    console.log(`Created By: MohmaedAlhassny`);
-    console.log(`Developed By: ! Abdulrhman ♥`);
+    console.log(`Created By: M3a4x`);
+    console.log(`Developed By: ! M3a4x.js ♥`);
     console.log(`Guilds: ${client.guilds.size}`);
     console.log(`Users: ${client.users.size}`);
     client.user.setActivity('#help | #invites',{type: 'WATCHING'});
@@ -645,63 +645,6 @@ client.on('message', message => {
       }
          
 });
-
-client.on('message', message => {
-  if(message.content.includes('discord.gg')){
-                                          if(!message.channel.guild) return message.reply('** advertising me on DM ? :thinking:   **');
-      if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-      message.delete()
-  return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-  }
-}
-});
-
-client.on('message', message => {
-  if(message.content.includes('https://')){
-                                          if(!message.channel.guild) return message.reply('** advertising me on DM ? :thinking:   **');
-      if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-      message.delete()
-  return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-  }
-}
-});
-
-client.on('message', message => {
-  if(message.content.includes('http://')){
-                                          if(!message.channel.guild) return message.reply('** advertising me on DM ? :thinking:   **');
-      if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-      message.delete()
-  return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-  }
-}
-});
-
-client.on('message', message => {
-  if(message.content.includes('.com')){
-                                          if(!message.channel.guild) return message.reply('** advertising me on DM ? :thinking:   **');
-      if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-      message.delete()
-  return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-  }
-}
-});
-
-client.on('message', message => {
-  if(message.content.includes('.net')){
-                                          if(!message.channel.guild) return message.reply('** advertising me on DM ? :thinking:   **');
-      if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-      message.delete()
-  return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-  }
-}
-});
-
-client.on('message', message => {
-  if (message.content === "#support") {
-  let embed = new Discord.RichEmbed()
-.setAuthor(message.author.username)
-.setColor("#9B59B6")
-.addField(" ** :gear: Server Support :gear: **" , "  **https://discord.gg/dark-support**")
 
 client.on('message', message => { 
 	var prefix ="#";
