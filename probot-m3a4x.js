@@ -395,7 +395,7 @@ client.on('message', message => {
                moment.locale('ar-TN');
       var id = new  Discord.RichEmbed()
       .setAuthor(message.author.username, message.author.avatarURL) 
-    .setColor("#707070")
+    .setColor("#RANDOM")
     .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
     .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
     .setFooter(`DarkCommunity`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
@@ -413,50 +413,6 @@ client.on('message', message => {
 		message.channel.send('**Pong!**').then(m => m.edit(ping));
 	};
 
-	
-client.on('message', message => {
-    var prefix = "#"
-if (message.content.startsWith(prefix + "uptime")) {
-   let uptime = client.uptime;
-
-   let days = 0;
-   let hours = 0;
-   let minutes = 0;
-   let seconds = 0;
-   let notCompleted = true;
-
-   while (notCompleted) {
-
-       if (uptime >= 8.64e+7) {
-
-           days++;
-           uptime -= 8.64e+7;
-
-       } else if (uptime >= 3.6e+6) {
-
-           hours++;
-           uptime -= 3.6e+6;
-
-       } else if (uptime >= 60000) {
-
-           minutes++;
-           uptime -= 60000;
-
-       } else if (uptime >= 1000) {
-           seconds++;
-           uptime -= 1000;
-
-       }
-
-       if (uptime < 1000)  notCompleted = false;
-
-   }
-
-   message.channel.send("`" + `${days} days, ${hours} hrs, ${minutes} min , ${seconds} sec` + "`");
-
-
-}
-});
 
 client.on('message', message => { // Leaked by [ @M3a4x ]
    if(message.content.startsWith(prefix + "invites")) {
@@ -474,49 +430,5 @@ client.on('message', message => { // Leaked by [ @M3a4x ]
   }
 });
 
-client.on('message', message => { // Leaked by [ @M3a4x ]
-
-
-           if (message.content.startsWith(prefix + "user")) {
-                     if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-
-    .setColor("#RANDOM")
-    .setAuthor(message.author.username)
- .setThumbnail(message.author.avatarURL)
-.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
-.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
-.addField(': عدد الدعوات', inviteCount,false)
-.setFooter("DarkCommunity.")
-    message.channel.sendEmbed(id);
-})
-}
-
-
-
-     });
 
 client.login("NDk4ODM3Mjk2Mjk3MDE3MzQ0.DritSQ.4N8cWJrGKU4uXRGZoA5Xlethkbc");
