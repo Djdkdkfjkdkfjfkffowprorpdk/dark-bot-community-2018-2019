@@ -17,25 +17,15 @@ client.on('ready', () => {
     console.log(`Users: ${client.users.size}`);
     client.user.setActivity('#help | #invites',{type: 'WATCHING'});
 });
-  client.users.forEach(m => {
-    if(m.bot) return;
-    if(!tpoints[m.id]) tpoints[m.id] = {points: 0, id: m.id};
-    fs.writeFileSync("./Text.json", JSON.stringify(tpoints, null, 2));
 
-    if(!vpoints[m.id]) vpoints[m.id] = {points: 0, id: m.id};
-    fs.writeFileSync("./Voice.json", JSON.stringify(vpoints, null, 2));
-  });
-});
 
-client.on('message',async message => {
+client.on('message',message => {
   if(message.author.bot || message.channel.type === 'dm') return;
   let args = message.content.split(' ');
   let member = message.member;
   let mention = message.mentions.users.first();
   let guild = message.guild;
   let author = message.author;
-
-  let rPoints = Math.floor(Math.#RANDOM() * 4) + 1;// #RANDOM Points
   tpoints[author.id].points += rPoints;
   fs.writeFileSync("./Text.json", JSON.stringify(tpoints, null, 2));
   if(args[0] === `${client.config.prefix}top`) {
@@ -576,7 +566,7 @@ var mentionned = message.mentions.members.first();
 .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true)
 .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
 .addField(': عدد الدعوات', inviteCount,false)
-.setFooter("Al AboDen Bot.")
+.setFooter("DarkCommunity.")
     message.channel.sendEmbed(id);
 })
 }
@@ -585,4 +575,4 @@ var mentionned = message.mentions.members.first();
 
      });
 
-client.login(process.env.BOT_TOKEN);
+client.login("NDk4ODM3Mjk2Mjk3MDE3MzQ0.DritSQ.4N8cWJrGKU4uXRGZoA5Xlethkbc");
