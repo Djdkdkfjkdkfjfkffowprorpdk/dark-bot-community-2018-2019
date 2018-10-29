@@ -788,61 +788,6 @@ if (message.content.startsWith(prefix + "uptime")) {
 }
 });
 
-	client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('gmail')){
-        message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-    }
-});
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('snapchat')){
-        message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('instagram')){
-        message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('twitter')){
-        message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-    }
-});
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('facebook')){
-        message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-    }
-});
-
-
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('youtube')){
-        message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: !  **`)
-    }
-
-});
-
-
 client.on('message', message => { // Leaked by [ @M3a4x ]
    if(message.content.startsWith(prefix + "invites")) {
     message.guild.fetchInvites().then(invs => {
